@@ -20,10 +20,10 @@ end
 def get_character_movies_from_api(character_name)
   json = get_json('http://www.swapi.co/api/people/')
   movie = find_character(character_name, json)
-  #while movie.nil?
-  #  json = get_json(json["next"])
-  #  movie = find_character(character_name, json)
-  #end
+  while movie.nil?
+    json = get_json(json["next"])
+    movie = find_character(character_name, json)
+  end
   return movie["films"]
   # iterate over the response hash to find the collection of `films` for the given
   #   `character`
